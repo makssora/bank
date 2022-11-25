@@ -1,6 +1,11 @@
 public class ATM {
     private double atmBalance;
     private double atmAmount;
+
+    public ATM (double atmAmount, double atmBalance) {
+        this.atmAmount = atmAmount;
+        this.atmBalance = atmBalance;
+    }
     public void cashOut (Debit card) {
         if (getAtmBalance() >= getAtmAmount() && card.getBalance() >= getAtmAmount()) {
             card.setBalance(card.getBalance() - getAtmAmount());
@@ -38,7 +43,7 @@ public class ATM {
     public static void main(String[] args) {
         Debit debitCard = new Debit(45069545, 495034);
         Credit creditCard = new Credit(3483493, 320929302, 3290329, 0.2);
-        ATM atm = new ATM();
+        ATM atm = new ATM(222232, 2323232);
         debitCard.setBalance(100);
         creditCard.setBalance(200);
         creditCard.setCreditBalance(300);
