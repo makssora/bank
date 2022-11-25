@@ -2,6 +2,11 @@ public class CashRegister {
     private double cashBoxMoney;
     private double amountOfMoney;
 
+    public CashRegister (double cashBoxMoney, double amountOfMoney) {
+        this.cashBoxMoney = cashBoxMoney;
+        this.amountOfMoney = amountOfMoney;
+    }
+
     public void addMoneyToCashBox(BankBuildings bank) {
         if (bank.getBankMoney() >= getAmountOfMoney()) {
             setCashBoxMoney(getCashBoxMoney() + getAmountOfMoney());

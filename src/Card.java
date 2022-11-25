@@ -2,6 +2,11 @@ abstract class Card {
     private int cardNumber;
     private double balance;
 
+    public Card (int cardNumber, double balance) {
+        this.cardNumber = cardNumber;
+        this.balance = balance;
+    }
+
     public double getBalance() {
         return balance;
     }

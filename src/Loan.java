@@ -9,6 +9,16 @@ public class Loan {
     private double amountOfMoney;
     private double fine;
 
+    public Loan(double loanPercent, String term, Date dateOpening, Date dateClosing, Date dateNow, double amountOfMoney, double fine){
+        this.loanPercent = loanPercent;
+        this.term = term;
+        this.dateOpening = dateOpening;
+        this.dateClosing = dateClosing;
+        this.dateNow = dateNow;
+        this.amountOfMoney = amountOfMoney;
+        this.fine = fine;
+    }
+
     public void takeLoan(Debit card) {
         card.setBalance(card.getBalance()+getAmountOfMoney());
     }

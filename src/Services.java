@@ -3,6 +3,11 @@ public class Services {
     private String phoneNumber;
     private double amountOfMoney;
 
+    public Services (String publicUtilities, String phoneNumber, double amountOfMoney) {
+        this.publicUtilities = publicUtilities;
+        this.phoneNumber = phoneNumber;
+        this.amountOfMoney = amountOfMoney;
+    }
     public void topUpPhone(Debit card) {
         if (card.getBalance() >= getAmountOfMoney()) {
             card.setBalance(card.getBalance()-getAmountOfMoney());
@@ -46,8 +51,8 @@ public class Services {
     }
 
     public static void main(String[] args) {
-        Debit card = new Debit();
-        Services service = new Services();
+        Debit card = new Debit(485894959, 544545);
+        Services service = new Services("electricity", "+380989871212", 10);
         card.setBalance(1000);
         service.setAmountOfMoney(10);
         service.setPhoneNumber("+380989871212");

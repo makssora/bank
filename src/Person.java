@@ -5,6 +5,14 @@ abstract class Person {
     private String gender;
     private int passportId;
 
+    public Person(String firstName, String lastName, int age, String gender, int passportId) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.gender = gender;
+        this.passportId = passportId;
+    }
+
     public String getFirstName() {
       return firstName;
     }

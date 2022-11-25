@@ -36,8 +36,8 @@ public class ATM {
 
 
     public static void main(String[] args) {
-        Debit debitCard = new Debit();
-        Credit creditCard = new Credit();
+        Debit debitCard = new Debit(45069545, 495034);
+        Credit creditCard = new Credit(3483493, 320929302, 3290329, 0.2);
         ATM atm = new ATM();
         debitCard.setBalance(100);
         creditCard.setBalance(200);

@@ -5,8 +5,19 @@ class Exchange {
     private double usdToUah;
     private double eurToUah;
     private double uahToEur;
-    private double uahToUSD;
+    private double uahToUsd;
     public double amountOfMoney;
+
+    public Exchange (double usd, double eur, double uah, double usdToUah, double eurToUah, double uahToEur, double uahToUsd, double amountOfMoney) {
+        this.usd = usd;
+        this.eur = eur;
+        this.uah = uah;
+        this.usdToUah = usdToUah;
+        this.eurToUah = eurToUah;
+        this.uahToEur = uahToEur;
+        this.uahToUsd = uahToUsd;
+        this.amountOfMoney = amountOfMoney;
+    }
 
     public void usdToUahСonversion() {
         if (getUah() >= getUsdToUah()*getAmountOfMoney()) {
@@ -93,11 +104,11 @@ class Exchange {
     }
 
     public double getUahToUsd() {
-        return uahToUSD;
+        return uahToUsd;
     }
 
-    public void setUahToUSD(double uahToUSD) {
-        this.uahToUSD = uahToUSD;
+    public void setUahToUsd(double uahToUSD) {
+        this.uahToUsd = uahToUSD;
     }
 
     public double getAmountOfMoney() {

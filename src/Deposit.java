@@ -3,6 +3,12 @@ class Deposit {
     private double depositBalance;
     private double amountOfMoney;
 
+    public Deposit (int annualPercentage, double depositBalance, double amountOfMoney) {
+        this.annualPercentage = annualPercentage;
+        this.depositBalance = depositBalance;
+        this.amountOfMoney = amountOfMoney;
+    }
+
     public void depositMoney (Debit card) {
         if (card.getBalance() >= getAmountOfMoney()) {
             card.setBalance(card.getBalance() - getAmountOfMoney());

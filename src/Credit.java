@@ -3,6 +3,12 @@ public class Credit extends Card{
     private double creditPercent;
     private double amountOfMoney;
 
+    public Credit(int cardNumber, double balance, double creditBalance, double creditPercent) {
+        super(cardNumber, balance);
+        this.creditBalance = creditBalance;
+        this.creditPercent = creditPercent;
+    }
+
     public void takeCredit(Credit card) {
         setCreditBalance(getCreditBalance() + getAmountOfMoney());
     }

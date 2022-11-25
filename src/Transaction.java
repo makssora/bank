@@ -3,6 +3,12 @@ public class Transaction {
     private String description;
     private double amountOfMoney;
 
+    public Transaction(String transactionDate,String description, double amountOfMoney) {
+        this.transactionDate = transactionDate;
+        this.description = description;
+        this.amountOfMoney = amountOfMoney;
+    }
+
     public void transfer(Debit card1, Credit card2) {
         if (getAmountOfMoney() <= card1.getBalance()) {
             card1.setBalance(card1.getBalance() - getAmountOfMoney());
