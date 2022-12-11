@@ -1,16 +1,17 @@
-public class ATM {
-    private double atmBalance;
-    private double atmAmount;
+public class ATM extends Structure {
 
-    public ATM (double atmAmount, double atmBalance) {
-        this.atmAmount = atmAmount;
-        this.atmBalance = atmBalance;
+    public ATM () {
+
     }
+    public ATM (double balance, double amountOfMoney) {
+        super(balance, amountOfMoney);
+    }
+
     public void cashOut (Debit card) {
-        if (getAtmBalance() >= getAtmAmount() && card.getBalance() >= getAtmAmount()) {
-            card.setBalance(card.getBalance() - getAtmAmount());
-            setAtmBalance(getAtmBalance() - getAtmAmount());
-        }else if (getAtmBalance() <= getAtmAmount()) {
+        if (getBalance() >= getAmountOfMoney() && card.getBalance() >= getAmountOfMoney()) {
+            card.setBalance(card.getBalance() - getAmountOfMoney());
+            setBalance(getBalance() - getAmountOfMoney());
+        }else if (getBalance() <= getAmountOfMoney()) {
             System.out.println("There is no money in the ATM");
         }else{
             System.out.println("There is not enough money on your card");
@@ -18,10 +19,10 @@ public class ATM {
     }
 
     public void cashOut (Credit card) {
-        if (getAtmBalance() >= getAtmAmount() && card.getBalance() >= getAtmAmount()) {
-            card.setBalance(card.getBalance() - getAtmAmount());
-            setAtmBalance(getAtmBalance() - getAtmAmount());
-        }else if (getAtmBalance() <= getAtmAmount()) {
+        if (getBalance() >= getAmountOfMoney() && card.getBalance() >= getAmountOfMoney()) {
+            card.setBalance(card.getBalance() - getAmountOfMoney());
+            setBalance(getBalance() - getAmountOfMoney());
+        }else if (getBalance() <= getAmountOfMoney()) {
             System.out.println("There is no money in the ATM");
         }else{
             System.out.println("There is not enough money on your card");
@@ -29,48 +30,14 @@ public class ATM {
     }
 
     public void cashOutCredit (Credit card) {
-        if (getAtmBalance() >= getAtmAmount() && card.getCreditBalance() >= getAtmAmount()) {
-            card.setCreditBalance(card.getCreditBalance() - getAtmAmount());
-            setAtmBalance(getAtmBalance() - getAtmAmount());
-        } else if (getAtmBalance() <= getAtmAmount()) {
+        if (getBalance() >= getAmountOfMoney() && card.getCreditBalance() >= getAmountOfMoney()) {
+            card.setCreditBalance(card.getCreditBalance() - getAmountOfMoney());
+            setBalance(getBalance() - getAmountOfMoney());
+        } else if (getBalance() <= getAmountOfMoney()) {
             System.out.println("There is no money in the ATM");
         } else {
-            System.out.println("There is not enough money on your Credit card");
+            System.out.println("There is not enough money on your card");
         }
-    }
-
-
-    public static void main(String[] args) {
-        Debit debitCard = new Debit(45069545, 495034);
-        Credit creditCard = new Credit(3483493, 320929302, 3290329, 0.2);
-        ATM atm = new ATM(222232, 2323232);
-        debitCard.setBalance(100);
-        creditCard.setBalance(200);
-        creditCard.setCreditBalance(300);
-        atm.setAtmBalance(1000);
-        atm.setAtmAmount(50);
-        atm.cashOut(debitCard);
-        atm.cashOut(creditCard);
-        atm.cashOutCredit(creditCard);
-        System.out.println(debitCard.getBalance());
-        System.out.println(creditCard.getBalance());
-        System.out.println(creditCard.getCreditBalance());
-        System.out.println(atm.getAtmBalance());
-    }
-    public double getAtmBalance() {
-        return atmBalance;
-    }
-
-    public void setAtmBalance(double atmBalance) {
-        this.atmBalance = atmBalance;
-    }
-
-    public double getAtmAmount() {
-        return atmAmount;
-    }
-
-    public void setAtmAmount(double atmAmount) {
-        this.atmAmount = atmAmount;
     }
 }
 

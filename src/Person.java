@@ -5,6 +5,9 @@ abstract class Person {
     private String gender;
     private int passportId;
 
+    public Person() {
+
+    }
     public Person(String firstName, String lastName, int age, String gender, int passportId) {
         this.firstName = firstName;
         this.lastName = lastName;

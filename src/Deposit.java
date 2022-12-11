@@ -1,34 +1,31 @@
-class Deposit {
-    private int annualPercentage;
-    private double depositBalance;
-    private double amountOfMoney;
+import java.util.Date;
 
-    public Deposit (int annualPercentage, double depositBalance, double amountOfMoney) {
-        this.annualPercentage = annualPercentage;
+class Deposit extends Services {
+    private double depositBalance;
+
+    public Deposit() {
+
+    }
+    public Deposit (double depositBalance, double percent, String term, Date dateOpening, Date dateClosing, Date dateNow, double amountOfMoney, double fine) {
+        super(percent, term, dateOpening, dateClosing, dateNow, amountOfMoney);
         this.depositBalance = depositBalance;
-        this.amountOfMoney = amountOfMoney;
     }
 
-    public void depositMoney (Debit card) {
-        if (card.getBalance() >= getAmountOfMoney()) {
-            card.setBalance(card.getBalance() - getAmountOfMoney());
-            setDepositBalance(getAmountOfMoney() + getAmountOfMoney() * getAnnualPercentage());
+    public void depositMoney (Customer customer) {
+        if (customer.getMoney() >= getAmountOfMoney()) {
+            customer.setMoney(customer.getMoney() - getAmountOfMoney());
+            setDepositBalance(getAmountOfMoney() + getAmountOfMoney());
         }else{
-            System.out.println("Your card has insufficient funds.");
+            System.out.println("Not enough customer money to deposit.");
         }
     }
 
-    public void withdrawMoney (Debit card) {
-        card.setBalance(card.getBalance() + getAmountOfMoney());
-        setDepositBalance(getDepositBalance() - getAmountOfMoney());
-    }
-
-    public int getAnnualPercentage() {
-        return annualPercentage;
-    }
-
-    public void setAnnualPercentage(int annualPercentage) {
-        this.annualPercentage = annualPercentage;
+    public void withdrawMoney (Customer customer) {
+        if (getDateClosing().compareTo(getDateNow()) <= 0) {
+            customer.setMoney(customer.getMoney()+(getDepositBalance()*getPercent()));
+        }else{
+            customer.setMoney(customer.getMoney()+getDepositBalance());
+        }
     }
 
     public double getDepositBalance() {
@@ -37,14 +34,6 @@ class Deposit {
 
     public void setDepositBalance(double depositBalance) {
         this.depositBalance = depositBalance;
-    }
-
-    public double getAmountOfMoney() {
-        return amountOfMoney;
-    }
-
-    public void setAmountOfMoney(double amountOfMoney) {
-        this.amountOfMoney = amountOfMoney;
     }
 }
 

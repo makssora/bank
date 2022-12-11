@@ -1,25 +1,30 @@
-public class BankBuildings {
-    private double bankMoney;
-    private String[] listOfEmployees;
+import java.util.Arrays;
 
-    public BankBuildings (double bankMoney, String[] listOfEmployees) {
-        this.bankMoney = bankMoney;
+public class BankBuildings extends Structure {
+    private Employees[] listOfEmployees;
+
+    public BankBuildings(){
+
+    }
+    public BankBuildings (double balance, double amountOfMoney, Employees[] listOfEmployees) {
+        super(balance, amountOfMoney);
         this.listOfEmployees = listOfEmployees;
+
     }
 
-    public double getBankMoney() {
-        return bankMoney;
+    public void employeeCheckList(Employees employee) {
+        if(Arrays.asList(listOfEmployees).contains(employee)) {
+            System.out.println("Employee is in the bank's list");
+        }else{
+            System.out.println("Employee is not in the bank's list");
+        }
     }
 
-    public void setBankMoney(double bankMoney) {
-        this.bankMoney = bankMoney;
-    }
-
-    public String[] getListOfEmployees() {
+    public Employees[] getListOfEmployees() {
         return listOfEmployees;
     }
 
-    public void setListOfEmployees(String[] listOfEmployees) {
+    public void setListOfEmployees(Employees[] listOfEmployees) {
         this.listOfEmployees = listOfEmployees;
     }
 }

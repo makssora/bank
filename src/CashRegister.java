@@ -1,45 +1,43 @@
-public class CashRegister {
-    private double cashBoxMoney;
-    private double amountOfMoney;
+public class CashRegister extends Structure {
 
-    public CashRegister (double cashBoxMoney, double amountOfMoney) {
-        this.cashBoxMoney = cashBoxMoney;
-        this.amountOfMoney = amountOfMoney;
+    private String date;
+
+    public CashRegister() {
+
     }
 
-    public void addMoneyToCashBox(BankBuildings bank) {
-        if (bank.getBankMoney() >= getAmountOfMoney()) {
-            setCashBoxMoney(getCashBoxMoney() + getAmountOfMoney());
-            bank.setBankMoney(bank.getBankMoney() - getAmountOfMoney());
+    public CashRegister (String date, double balance, double amountOfMoney) {
+        super(balance, amountOfMoney);
+        this.date = date;
+
+    }
+
+    public void addMoneyToCashBox(BankBuildings bank, Teller teller) {
+        if (bank.getBalance() >= getAmountOfMoney() && teller.isWorkInBank()) {
+            setBalance(getBalance() + getAmountOfMoney());
+            bank.setBalance(bank.getBalance() - getAmountOfMoney());
         }else{
             System.out.println("Not enough money in the bank");
         }
     }
-
-    public void getMoneyFromCard(Debit card) {
-        if (card.getBalance() >= getAmountOfMoney()){
+    public void getMoneyFromCard(Debit card, Teller teller) {
+        if (card.getBalance() >= getAmountOfMoney() && teller.isWorkInBank()){
             card.setBalance(card.getBalance() - getAmountOfMoney());
-            setCashBoxMoney(getCashBoxMoney() - getAmountOfMoney());
-        }else if (card.getBalance() < getAmountOfMoney()){
+            setBalance(getBalance() - getAmountOfMoney());
+        }else if (card.getBalance() < getAmountOfMoney() && teller.isWorkInBank()){
             System.out.println("Not enough money on the card");
-        }else{
+        }else if(teller.isWorkInBank()){
             System.out.println("Not enough money in cashBox");
+        }else {
+            System.out.println("Teller isn't available");
         }
     }
 
-    public double getCashBoxMoney() {
-        return cashBoxMoney;
+    public String getDate() {
+        return date;
     }
 
-    public void setCashBoxMoney(double cashBoxMoney) {
-        this.cashBoxMoney = cashBoxMoney;
-    }
-
-    public double getAmountOfMoney() {
-        return amountOfMoney;
-    }
-
-    public void setAmountOfMoney(double amountOfMoney) {
-        this.amountOfMoney = amountOfMoney;
+    public void setDate(String date) {
+        this.date = date;
     }
 }
