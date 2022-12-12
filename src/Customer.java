@@ -8,10 +8,11 @@ class Customer extends Person {
 
     }
 
-    public Customer(String firstName, String lastName, int age, String gender, int passportId, String clientType, String phoneNumber) {
+    public Customer(double money, String firstName, String lastName, int age, String gender, int passportId, String clientType, String phoneNumber) {
         super(firstName, lastName, age, gender, passportId);
         this.clientType = clientType;
         this.phoneNumber = phoneNumber;
+        this.money = money;
     }
 
     public String getClientType() {

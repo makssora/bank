@@ -6,7 +6,7 @@ class Deposit extends Services {
     public Deposit() {
 
     }
-    public Deposit (double depositBalance, double percent, String term, Date dateOpening, Date dateClosing, Date dateNow, double amountOfMoney, double fine) {
+    public Deposit (double depositBalance, double percent, String term, Date dateOpening, Date dateClosing, Date dateNow, double amountOfMoney) {
         super(percent, term, dateOpening, dateClosing, dateNow, amountOfMoney);
         this.depositBalance = depositBalance;
     }
@@ -14,7 +14,7 @@ class Deposit extends Services {
     public void depositMoney (Customer customer) {
         if (customer.getMoney() >= getAmountOfMoney()) {
             customer.setMoney(customer.getMoney() - getAmountOfMoney());
-            setDepositBalance(getAmountOfMoney() + getAmountOfMoney());
+            setDepositBalance(getDepositBalance() + getAmountOfMoney());
         }else{
             System.out.println("Not enough customer money to deposit.");
         }
@@ -22,9 +22,11 @@ class Deposit extends Services {
 
     public void withdrawMoney (Customer customer) {
         if (getDateClosing().compareTo(getDateNow()) <= 0) {
-            customer.setMoney(customer.getMoney()+(getDepositBalance()*getPercent()));
+            customer.setMoney(customer.getMoney() + (getDepositBalance()*getPercent()));
+            setDepositBalance(getDepositBalance() - (getDepositBalance()*getPercent()));
         }else{
-            customer.setMoney(customer.getMoney()+getDepositBalance());
+            customer.setMoney(customer.getMoney() + getDepositBalance());
+            setDepositBalance(getDepositBalance() - getDepositBalance());
         }
     }
 

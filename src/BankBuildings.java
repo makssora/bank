@@ -6,7 +6,7 @@ public class BankBuildings extends Structure {
     public BankBuildings(){
 
     }
-    public BankBuildings (double balance, double amountOfMoney, Employees[] listOfEmployees) {
+    public BankBuildings(double balance, double amountOfMoney, Employees[] listOfEmployees) {
         super(balance, amountOfMoney);
         this.listOfEmployees = listOfEmployees;
 
