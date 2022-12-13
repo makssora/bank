@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.util.Objects;
 
 public class Loan extends Services {
 
@@ -34,5 +35,25 @@ public class Loan extends Services {
 
     public void setFine(double fine) {
         this.fine = fine;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Loan)) return false;
+        Loan loan = (Loan) o;
+        return Double.compare(loan.getFine(), getFine()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getFine());
+    }
+
+    @Override
+    public String toString() {
+        return "Loan{" +
+                "fine=" + fine +
+                '}';
     }
 }

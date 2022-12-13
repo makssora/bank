@@ -19,4 +19,12 @@ public enum Currency {
     public double getPurchasePrice() {
         return purchasePrice;
     }
+
+    @Override
+    public String toString() {
+        return "Currency{" +
+                "purchasePrice=" + purchasePrice +
+                ", sellPrice=" + sellPrice +
+                '}';
+    }
 }

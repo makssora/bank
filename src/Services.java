@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.util.Objects;
 
 abstract class Services {
     private double percent;
@@ -67,5 +68,30 @@ abstract class Services {
 
     public void setAmountOfMoney(double amountOfMoney) {
         this.amountOfMoney = amountOfMoney;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Services)) return false;
+        Services services = (Services) o;
+        return Double.compare(services.getPercent(), getPercent()) == 0 && Double.compare(services.getAmountOfMoney(), getAmountOfMoney()) == 0 && Objects.equals(getTerm(), services.getTerm()) && Objects.equals(getDateOpening(), services.getDateOpening()) && Objects.equals(getDateClosing(), services.getDateClosing()) && Objects.equals(getDateNow(), services.getDateNow());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPercent(), getTerm(), getDateOpening(), getDateClosing(), getDateNow(), getAmountOfMoney());
+    }
+
+    @Override
+    public String toString() {
+        return "Services{" +
+                "percent=" + percent +
+                ", term='" + term + '\'' +
+                ", dateOpening=" + dateOpening +
+                ", dateClosing=" + dateClosing +
+                ", dateNow=" + dateNow +
+                ", amountOfMoney=" + amountOfMoney +
+                '}';
     }
 }

@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Accounts extends Person {
     private int accountId;
     private String login;
@@ -35,5 +37,27 @@ public class Accounts extends Person {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Accounts)) return false;
+        Accounts accounts = (Accounts) o;
+        return getAccountId() == accounts.getAccountId() && Objects.equals(getLogin(), accounts.getLogin()) && Objects.equals(getPassword(), accounts.getPassword());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAccountId(), getLogin(), getPassword());
+    }
+
+    @Override
+    public String toString() {
+        return "Accounts{" +
+                "accountId=" + accountId +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class CashRegister extends Structure {
 
     private String date;
@@ -39,5 +41,25 @@ public class CashRegister extends Structure {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CashRegister)) return false;
+        CashRegister that = (CashRegister) o;
+        return Objects.equals(getDate(), that.getDate());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getDate());
+    }
+
+    @Override
+    public String toString() {
+        return "CashRegister{" +
+                "date='" + date + '\'' +
+                '}';
     }
 }

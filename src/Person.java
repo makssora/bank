@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 abstract class Person {
     private String firstName;
     private String lastName;
@@ -54,5 +56,29 @@ abstract class Person {
 
     public void setPassportId(int passportId) {
         this.passportId = passportId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person)) return false;
+        Person person = (Person) o;
+        return getAge() == person.getAge() && getPassportId() == person.getPassportId() && Objects.equals(getFirstName(), person.getFirstName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getGender(), person.getGender());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getFirstName(), getLastName(), getAge(), getGender(), getPassportId());
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", gender='" + gender + '\'' +
+                ", passportId=" + passportId +
+                '}';
     }
 }

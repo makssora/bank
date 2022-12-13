@@ -1,10 +1,14 @@
+import java.util.Objects;
+
 public class ATM extends Structure {
 
-    public ATM () {
+    private int atmNumber;
 
+    public ATM () {
     }
-    public ATM (double balance, double amountOfMoney) {
+    public ATM (double balance, double amountOfMoney, int atmNumber) {
         super(balance, amountOfMoney);
+        this.atmNumber = atmNumber;
     }
 
     public void cashOut (Debit card) {
@@ -38,6 +42,35 @@ public class ATM extends Structure {
         } else {
             System.out.println("There is not enough money on your card");
         }
+    }
+
+    public int getAtmNumber() {
+        return atmNumber;
+    }
+
+    public void setAtmNumber(int atmNumber) {
+        this.atmNumber = atmNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ATM)) return false;
+        if (!super.equals(o)) return false;
+        ATM atm = (ATM) o;
+        return getAtmNumber() == atm.getAtmNumber();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getAtmNumber());
+    }
+
+    @Override
+    public String toString() {
+        return "ATM{" +
+                "atmNumber=" + atmNumber +
+                '}';
     }
 }
 

@@ -28,7 +28,7 @@ public class Main {
         //transfer money from credit to credit card
         creditCard1.transfer(creditCard2, 10);
         //create ATM
-        ATM atm = new ATM(1000000, 20);
+        ATM atm = new ATM(1000000, 20, 2);
         //cashOut from debit card
         atm.cashOut(debitCard2);
         //cashOut from actual balance credit card
@@ -67,6 +67,5 @@ public class Main {
         //convert customer money
         exchanger.conversionBuy(customer, Currency.USD);
         exchanger.conversionSell(customer, Currency.EUR);
-
     }
 }

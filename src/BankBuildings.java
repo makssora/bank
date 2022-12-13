@@ -27,4 +27,24 @@ public class BankBuildings extends Structure {
     public void setListOfEmployees(Employees[] listOfEmployees) {
         this.listOfEmployees = listOfEmployees;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BankBuildings)) return false;
+        BankBuildings that = (BankBuildings) o;
+        return Arrays.equals(getListOfEmployees(), that.getListOfEmployees());
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(getListOfEmployees());
+    }
+
+    @Override
+    public String toString() {
+        return "BankBuildings{" +
+                "listOfEmployees=" + Arrays.toString(listOfEmployees) +
+                '}';
+    }
 }

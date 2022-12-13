@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Credit extends Card {
     private double creditBalance;
     private double creditPercent;
@@ -60,5 +62,28 @@ public class Credit extends Card {
 
     public void setAmountOfMoney(double amountOfMoney) {
         this.amountOfMoney = amountOfMoney;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Credit)) return false;
+        if (!super.equals(o)) return false;
+        Credit credit = (Credit) o;
+        return Double.compare(credit.getCreditBalance(), getCreditBalance()) == 0 && Double.compare(credit.getCreditPercent(), getCreditPercent()) == 0 && Double.compare(credit.getAmountOfMoney(), getAmountOfMoney()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getCreditBalance(), getCreditPercent(), getAmountOfMoney());
+    }
+
+    @Override
+    public String toString() {
+        return "Credit{" +
+                "creditBalance=" + creditBalance +
+                ", creditPercent=" + creditPercent +
+                ", amountOfMoney=" + amountOfMoney +
+                '}';
     }
 }

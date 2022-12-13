@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 abstract class Card {
     private int cardNumber;
     private double balance;
@@ -25,5 +27,26 @@ abstract class Card {
 
     public void setCardNumber(int cardNumber) {
         this.cardNumber = cardNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Card)) return false;
+        Card card = (Card) o;
+        return getCardNumber() == card.getCardNumber() && Double.compare(card.getBalance(), getBalance()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCardNumber(), getBalance());
+    }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "cardNumber=" + cardNumber +
+                ", balance=" + balance +
+                '}';
     }
 }

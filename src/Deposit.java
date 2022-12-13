@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.util.Objects;
 
 class Deposit extends Services {
     private double depositBalance;
@@ -36,6 +37,26 @@ class Deposit extends Services {
 
     public void setDepositBalance(double depositBalance) {
         this.depositBalance = depositBalance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Deposit)) return false;
+        Deposit deposit = (Deposit) o;
+        return Double.compare(deposit.getDepositBalance(), getDepositBalance()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getDepositBalance());
+    }
+
+    @Override
+    public String toString() {
+        return "Deposit{" +
+                "depositBalance=" + depositBalance +
+                '}';
     }
 }
 

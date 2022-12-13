@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 class Employees extends Person {
     private String jobTitle;
     private int workExperience;
@@ -25,5 +27,26 @@ class Employees extends Person {
 
     public void setWorkExperience(int workExperience) {
         this.workExperience = workExperience;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employees)) return false;
+        Employees employees = (Employees) o;
+        return getWorkExperience() == employees.getWorkExperience() && Objects.equals(getJobTitle(), employees.getJobTitle());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getJobTitle(), getWorkExperience());
+    }
+
+    @Override
+    public String toString() {
+        return "Employees{" +
+                "jobTitle='" + jobTitle + '\'' +
+                ", workExperience=" + workExperience +
+                '}';
     }
 }
