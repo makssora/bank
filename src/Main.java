@@ -14,8 +14,8 @@ public class Main {
         //check if employee in bank list
         building.employeeCheckList(employee3);
         //create debit card
-        Debit debitCard1 = new Debit(200200200, 1000000);
-        Debit debitCard2 = new Debit(200200201, 1000000);
+        Debit debitCard1 = new Debit(200200200, 1000000, "Taras Tarasov");
+        Debit debitCard2 = new Debit(200200201, 1000000, "Mike Smith");
         //create credit card
         Credit creditCard1 = new Credit(200200202, 1000000.0, 1000000.0, 0.1);
         Credit creditCard2 = new Credit(200200203, 1000000.0, 1000000.0, 0.1);
