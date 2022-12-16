@@ -1,21 +1,35 @@
+import exceptions.BankCardTransferException;
+import exceptions.BankServiceException;
+import exceptions.IllegalDataException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Date;
 import java.util.Objects;
 
 abstract class Services {
     private double percent;
-    private String term;
     private Date dateOpening;
     private Date dateClosing;
     private Date dateNow;
     private double amountOfMoney;
 
+    private static final Logger logger = LogManager.getLogger(Services.class);
+
     public Services () {
 
     }
 
-    public Services (double percent, String term, Date dateOpening, Date dateClosing, Date dateNow, double amountOfMoney) {
+    public Services (double percent, Date dateOpening, Date dateClosing, Date dateNow, double amountOfMoney) {
+
+        if(!(percent>0 || percent<1)){
+            logger.error(BankServiceException.PERCENT_MESSAGE);
+            throw new BankServiceException(BankServiceException.PERCENT_MESSAGE);
+        }
+
+        BankServiceException.dateOpenCloseValidation(dateOpening, dateClosing, logger);
+
         this.percent = percent;
-        this.term = term;
         this.dateOpening = dateOpening;
         this.dateClosing = dateClosing;
         this.dateNow = dateNow;
@@ -28,14 +42,6 @@ abstract class Services {
 
     public void setPercent(double percent) {
         this.percent = percent;
-    }
-
-    public String getTerm() {
-        return term;
-    }
-
-    public void setTerm(String term) {
-        this.term = term;
     }
 
     public Date getDateOpening() {
@@ -75,19 +81,18 @@ abstract class Services {
         if (this == o) return true;
         if (!(o instanceof Services)) return false;
         Services services = (Services) o;
-        return Double.compare(services.getPercent(), getPercent()) == 0 && Double.compare(services.getAmountOfMoney(), getAmountOfMoney()) == 0 && Objects.equals(getTerm(), services.getTerm()) && Objects.equals(getDateOpening(), services.getDateOpening()) && Objects.equals(getDateClosing(), services.getDateClosing()) && Objects.equals(getDateNow(), services.getDateNow());
+        return Double.compare(services.getPercent(), getPercent()) == 0 && Double.compare(services.getAmountOfMoney(), getAmountOfMoney()) == 0 && Objects.equals(getDateOpening(), services.getDateOpening()) && Objects.equals(getDateClosing(), services.getDateClosing()) && Objects.equals(getDateNow(), services.getDateNow());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPercent(), getTerm(), getDateOpening(), getDateClosing(), getDateNow(), getAmountOfMoney());
+        return Objects.hash(getPercent(), getDateOpening(), getDateClosing(), getDateNow(), getAmountOfMoney());
     }
 
     @Override
     public String toString() {
         return "Services{" +
                 "percent=" + percent +
-                ", term='" + term + '\'' +
                 ", dateOpening=" + dateOpening +
                 ", dateClosing=" + dateClosing +
                 ", dateNow=" + dateNow +

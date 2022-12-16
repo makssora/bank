@@ -1,7 +1,7 @@
 import java.util.Date;
 import java.util.Objects;
 
-public class Loan extends Services {
+public class Loan extends Services implements IPayOff{
 
     private double fine;
 
@@ -10,7 +10,7 @@ public class Loan extends Services {
     }
 
     public Loan(double percent, String term, Date dateOpening, Date dateClosing, Date dateNow, double amountOfMoney, double fine){
-        super(percent, term, dateOpening, dateClosing, dateNow, amountOfMoney);
+        super(percent, dateOpening, dateClosing, dateNow, amountOfMoney);
         this.fine = fine;
     }
     public void takeLoan(Customer customer, Manager manager) {
@@ -18,14 +18,12 @@ public class Loan extends Services {
             customer.setMoney(customer.getMoney() + getAmountOfMoney());
         }
     }
-
-    public void payLoan(Customer customer, Manager manager) {
-        if (getDateClosing().compareTo(getDateNow()) <= 0 && manager.isWorkInBank()) {
+    @Override
+    public void payOffMoney(Customer customer) {
+        if (getDateClosing().compareTo(getDateNow()) <= 0) {
         customer.setMoney(customer.getMoney()-getAmountOfMoney()-getAmountOfMoney()*getPercent());
-        }else if (manager.isWorkInBank()){
-            customer.setMoney(customer.getMoney()-getAmountOfMoney()-getAmountOfMoney()*getPercent()-getFine());
         }else {
-            System.out.println("Manager isn't available");
+            customer.setMoney(customer.getMoney() - getAmountOfMoney() - getAmountOfMoney() * getPercent() - getFine());
         }
     }
 

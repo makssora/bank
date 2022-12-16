@@ -8,9 +8,9 @@ public class Manager extends Employees {
 
     }
 
-    public Manager(String firstName, String lastName, int age, String gender, int passportId, String jobTitle, int workExperience) {
+    public Manager(boolean workInBank, String firstName, String lastName, int age, String gender, int passportId, String jobTitle, int workExperience) {
         super(firstName, lastName, age, gender, passportId, jobTitle, workExperience);
-
+        this.workInBank = workInBank;
     }
 
     public boolean isWorkInBank() {

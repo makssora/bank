@@ -1,9 +1,16 @@
+import exceptions.BankCardTransferException;
+import exceptions.BankStructureException;
+import exceptions.IllegalDataException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Objects;
 
 public class ATM extends Structure {
 
     private int atmNumber;
 
+    private static final Logger logger = LogManager.getLogger(ATM.class);
     public ATM () {
     }
     public ATM (double balance, double amountOfMoney, int atmNumber) {
@@ -16,9 +23,11 @@ public class ATM extends Structure {
             card.setBalance(card.getBalance() - getAmountOfMoney());
             setBalance(getBalance() - getAmountOfMoney());
         }else if (getBalance() <= getAmountOfMoney()) {
-            System.out.println("There is no money in the ATM");
+            logger.error(BankStructureException.ATM_BALANCE_MESSAGE);
+            throw new BankStructureException(BankStructureException.ATM_BALANCE_MESSAGE);
         }else{
-            System.out.println("There is not enough money on your card");
+            logger.error(BankCardTransferException.NOT_ENOUGH_FOUNDS_MESSAGE);
+            throw new BankCardTransferException(BankCardTransferException.NOT_ENOUGH_FOUNDS_MESSAGE);
         }
     }
 
@@ -27,9 +36,11 @@ public class ATM extends Structure {
             card.setBalance(card.getBalance() - getAmountOfMoney());
             setBalance(getBalance() - getAmountOfMoney());
         }else if (getBalance() <= getAmountOfMoney()) {
-            System.out.println("There is no money in the ATM");
+            logger.error(BankStructureException.ATM_BALANCE_MESSAGE);
+            throw new BankStructureException(BankStructureException.ATM_BALANCE_MESSAGE);
         }else{
-            System.out.println("There is not enough money on your card");
+            logger.error(BankCardTransferException.NOT_ENOUGH_FOUNDS_MESSAGE);
+            throw new BankCardTransferException(BankCardTransferException.NOT_ENOUGH_FOUNDS_MESSAGE);
         }
     }
 
@@ -37,10 +48,12 @@ public class ATM extends Structure {
         if (getBalance() >= getAmountOfMoney() && card.getCreditBalance() >= getAmountOfMoney()) {
             card.setCreditBalance(card.getCreditBalance() - getAmountOfMoney());
             setBalance(getBalance() - getAmountOfMoney());
-        } else if (getBalance() <= getAmountOfMoney()) {
-            System.out.println("There is no money in the ATM");
-        } else {
-            System.out.println("There is not enough money on your card");
+        }else if (getBalance() <= getAmountOfMoney()) {
+            logger.error(BankStructureException.ATM_BALANCE_MESSAGE);
+            throw new BankStructureException(BankStructureException.ATM_BALANCE_MESSAGE);
+        }else{
+            logger.error(BankCardTransferException.NOT_ENOUGH_FOUNDS_MESSAGE);
+            throw new BankCardTransferException(BankCardTransferException.NOT_ENOUGH_FOUNDS_MESSAGE);
         }
     }
 

@@ -1,9 +1,15 @@
+import exceptions.BankCardTransferException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Objects;
 
-public class Credit extends Card {
+public class Credit extends Card implements ITransaction{
     private double creditBalance;
     private double creditPercent;
     private double amountOfMoney;
+
+    private static final Logger logger = LogManager.getLogger(Credit.class);
 
     public Credit() {
 
@@ -21,22 +27,24 @@ public class Credit extends Card {
     public void payCredit(Credit card) {
         setCreditBalance(getCreditBalance() - getAmountOfMoney() - getAmountOfMoney()*getCreditPercent());
     }
-
+    @Override
     public void transfer(Credit card, double amountOfMoney) {
         if (getBalance() <= getBalance()) {
             setBalance(getBalance() - amountOfMoney);
             card.setBalance(card.getBalance() + amountOfMoney);
         } else {
-            System.out.println("Your card has insufficient funds.");
+            logger.error(BankCardTransferException.NOT_ENOUGH_FOUNDS_MESSAGE);
+            throw new BankCardTransferException(BankCardTransferException.NOT_ENOUGH_FOUNDS_MESSAGE);
         }
     }
-
+    @Override
     public void transfer(Debit card, double amountOfMoney) {
         if (getBalance() <= getBalance()) {
             setBalance(getBalance() - amountOfMoney);
             card.setBalance(card.getBalance() + amountOfMoney);
         } else {
-            System.out.println("Your card has insufficient funds.");
+            logger.error(BankCardTransferException.NOT_ENOUGH_FOUNDS_MESSAGE);
+            throw new BankCardTransferException(BankCardTransferException.NOT_ENOUGH_FOUNDS_MESSAGE);
         }
     }
 

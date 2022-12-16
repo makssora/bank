@@ -1,14 +1,14 @@
 import java.util.Date;
 import java.util.Objects;
 
-class Deposit extends Services {
+class Deposit extends Services implements IPayOff {
     private double depositBalance;
 
     public Deposit() {
 
     }
     public Deposit (double depositBalance, double percent, String term, Date dateOpening, Date dateClosing, Date dateNow, double amountOfMoney) {
-        super(percent, term, dateOpening, dateClosing, dateNow, amountOfMoney);
+        super(percent, dateOpening, dateClosing, dateNow, amountOfMoney);
         this.depositBalance = depositBalance;
     }
 
@@ -20,8 +20,8 @@ class Deposit extends Services {
             System.out.println("Not enough customer money to deposit.");
         }
     }
-
-    public void withdrawMoney (Customer customer) {
+    @Override
+    public void payOffMoney (Customer customer) {
         if (getDateClosing().compareTo(getDateNow()) <= 0) {
             customer.setMoney(customer.getMoney() + (getDepositBalance()*getPercent()));
             setDepositBalance(getDepositBalance() - (getDepositBalance()*getPercent()));

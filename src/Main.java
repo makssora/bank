@@ -1,5 +1,8 @@
+import org.apache.log4j.Logger;
+
 import java.util.Date;
 public class Main {
+    private static final Logger LOGGER = Logger.getLogger(Main.class);
     public static void main(String[] args){
         //create account
         Accounts account = new Accounts();
@@ -56,12 +59,12 @@ public class Main {
         Loan loan = new Loan(0.1, "1 year", dateOpening, dateClosing, dateNow, 200, 10);
         //take loan and pay loan
         loan.takeLoan(customer, manager);
-        loan.payLoan(customer, manager);
+        loan.payOffMoney(customer);
         //create deposit
         Deposit deposit = new Deposit(0, 0.3, "1 year", dateOpening, dateClosing, dateNow, 300);
         //make deposit and withdraw money from deposit
         deposit.depositMoney(customer);
-        deposit.withdrawMoney(customer);
+        deposit.payOffMoney(customer);
         //create exchanger
         Exchange exchanger = new Exchange(100);
         //convert customer money
